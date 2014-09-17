@@ -10,21 +10,34 @@ and open the template in the editor.
         <title></title>
     </head>
     <body>
-<!--        <form>
-            <input type="text" name="namn">
-            <input type="submit"> 
-        </form>-->
+        <form>
+            <input type="text" name="antal">
+            <input type="submit">
+        </form>
+        
         <?php
-        
-//        var_dump($_GET);
-//        echo $_GET["namn"];
-        
-        $namn = array("martin","albin","klas","carl","fgt","prinsessukennyruuuuuuuuu","mr cool","apskaft","fett sne","rebecka");
-        $sak = rand(0,9);
-        
-        echo "Det var en solig dag och ".$namn[$sak]." åt glass";
-        
-        
+            if(isset($_GET["antal"])){    
+            $storlek = $_GET["antal"];
+                
+            $namn = array("martin","albin","klas","carl","fgt","prinsessukennyruuuuuuuuu","mr cool","apskaft","fett sne","rebecka");
+            $used = array();
+            
+            echo "<ul>";
+            
+            for($i = 0; $i < $storlek; $i++){    
+            
+                do {
+                    $sak = rand(0,9);
+                } while(in_array($sak, $used));
+            
+                $used[] = $sak;   
+
+                echo "<li>Det var en solig dag och ".$namn[$sak]." åt glass</li>";
+            }
+            
+            echo "</ul>";
+            }
+            else{echo "Inga inmatade nummer";}
         
         ?>
     </body>
